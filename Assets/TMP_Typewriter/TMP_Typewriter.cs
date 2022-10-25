@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ namespace KoganeUnityLib
 		private string m_parsedText;
 		private Action m_onComplete;
 		private Tween m_tween;
+		private List<(int index, int count)> m_rubyInfos = new(32);
 
 		//==============================================================================
 		// 関数
@@ -49,19 +51,25 @@ namespace KoganeUnityLib
 		}
 
 		/// <summary>
-		/// 演出を再生します
+		/// 演出を再生します（ルビ対応版）
 		/// </summary>
 		/// <param name="text">表示するテキスト ( リッチテキスト対応 )</param>
 		/// <param name="speed">表示する速さ ( speed == 1 の場合 1 文字の表示に 1 秒、speed == 2 の場合 0.5 秒かかる )</param>
 		/// <param name="onComplete">演出完了時に呼び出されるコールバック</param>
-		public void Play( string text, float speed, Action onComplete )
+		/// <param name="fixedLineHeight">ルビ表示用に行間を固定する</param>
+		/// <param name="autoMarginTop">1行目にルビがある時はMarginTopで位置調整する</param>
+		public void Play( string text, float speed, Action onComplete, bool fixedLineHeight = false, bool autoMarginTop = true)
 		{
 			m_textUI.text = text;
+			m_textUI.ForceMeshUpdate();
 			m_onComplete = onComplete;
 
-			m_textUI.ForceMeshUpdate();
-
+			// ルビタグ展開前のリッチテキスト除外テキストを取得
 			m_parsedText = m_textUI.GetParsedText();
+			SetRubyInfos(m_parsedText);
+
+			m_textUI.SetTextAndExpandRuby(text, fixedLineHeight, autoMarginTop);
+			m_textUI.ForceMeshUpdate();
 
 			var length = m_parsedText.Length;
 			var duration = 1 / speed * length;
@@ -78,6 +86,30 @@ namespace KoganeUnityLib
 				.SetEase( Ease.Linear )
 				.OnComplete( () => OnComplete() )
 			;
+		}
+
+		/// <summary>
+		/// ルビタグごとの漢字の終了位置（ルビタグを除外した位置）と、ルビの文字数を取得
+		/// </summary>
+		public void SetRubyInfos(string text)
+		{
+			m_rubyInfos.Clear();
+			var match = TMProRubyUtil.TagRegex.Match(text);
+			while (match.Success)
+			{
+				if (match.Groups.Count > 2)
+				{
+					var ruby = match.Groups["ruby"];
+					var kanji = match.Groups["kanji"];
+					m_rubyInfos.Add((ruby.Index + kanji.Value.Length - 3, ruby.Value.Length));
+					text = text.Replace(match.Groups[0].Value, kanji.Value);
+					match = TMProRubyUtil.TagRegex.Match(text);
+				}
+				else
+				{
+					match.NextMatch();
+				}
+			}
 		}
 
 		/// <summary>
@@ -134,8 +166,17 @@ namespace KoganeUnityLib
 		{
 			var current = Mathf.Lerp( 0, m_parsedText.Length, value );
 			var count = Mathf.FloorToInt( current );
+			var rubyAddedCount = count;
 
-			m_textUI.maxVisibleCharacters = count;
+			foreach (var info in m_rubyInfos)
+			{
+				if (count >= info.index)
+				{
+					rubyAddedCount += info.count;
+				}
+			}
+
+			m_textUI.maxVisibleCharacters = rubyAddedCount;
 		}
 
 		/// <summary>
