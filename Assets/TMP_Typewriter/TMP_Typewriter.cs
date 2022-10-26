@@ -68,11 +68,12 @@ namespace KoganeUnityLib
 			m_parsedText = m_textUI.GetParsedText();
 			SetRubyInfos(m_parsedText);
 
-			m_textUI.SetTextAndExpandRuby(text, fixedLineHeight, autoMarginTop);
-			m_textUI.ForceMeshUpdate();
-
+			m_parsedText = TMProRubyUtil.RemoveRubyTag(m_parsedText);
 			var length = m_parsedText.Length;
 			var duration = 1 / speed * length;
+
+			m_textUI.SetTextAndExpandRuby(text, fixedLineHeight, autoMarginTop);
+			m_textUI.ForceMeshUpdate();
 
 			OnUpdate( 0 );
 
@@ -177,6 +178,8 @@ namespace KoganeUnityLib
 			}
 
 			m_textUI.maxVisibleCharacters = rubyAddedCount;
+			
+			Debug.Log(value);
 		}
 
 		/// <summary>
