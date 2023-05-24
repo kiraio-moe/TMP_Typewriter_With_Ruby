@@ -1,0 +1,17 @@
+{
+    "name": "TMP_Typewriter",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c90425261ba3e004a8034af63037345a",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

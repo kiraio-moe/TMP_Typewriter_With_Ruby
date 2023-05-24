@@ -1,0 +1,20 @@
+{
+    "name": "TMP_Typewriter.Editor.Tests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e3a06a13e923679419a38ca5553f4714",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:0acc523941302664db1f4e527237feb3"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
