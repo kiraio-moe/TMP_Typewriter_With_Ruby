@@ -22,11 +22,19 @@ namespace KoganeUnityLib
         // Get access to the TMP, so it can be easily used later.
         public RubyTextMeshPro rubyTMP { get; private set; } // TMP with Mesh Renderer
         public RubyTextMeshProUGUI rubyTMP_UGUI { get; private set; } // TMP with Canvas Renderer
-        private string parsedText;
+        public bool isTyping
+        {
+            get
+            {
+                return typingTween.IsPlaying();
+            }
+            private set { }
+        }
         private Action onCompleteCallback;
         private Tween typingTween, delayTween;
         private List<(string text, float delay)> delayTexts =
             new List<(string text, float delay)>();
+        private string parsedText;
         private int delayTagCount = 0;
         private float delayTimer;
         // private List<(int index, int count)> m_rubyInfos = new List<(int index, int count)>(32);
@@ -48,11 +56,6 @@ namespace KoganeUnityLib
         private void OnValidate()
         {
             InitializeRubyTMP();
-            ReplaceDelayTag();
-        }
-
-        private void OnBecameVisible()
-        {
             ReplaceDelayTag();
         }
 #endif
