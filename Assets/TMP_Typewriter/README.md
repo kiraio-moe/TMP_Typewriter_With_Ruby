@@ -1,13 +1,12 @@
 # TMP_Typewriter (With_Ruby)
 
-TMP_Typewriter is a utility to create typing effect for TextMeshPro by utilizing [DOTween](http://dotween.demigiant.com "DOTween") funtionality. Support Ruby (Furigana) to write Kanji thanks to [RubyTextMeshPro](https://github.com/jp-netsis/RubyTextMeshPro "RubyTextMeshPro") by [jp-netsis](https://github.com/jp-netsis "jp-netsis").
+TMP_Typewriter is a utility to create typing effect for TextMeshPro by utilizing [DOTween](http://dotween.demigiant.com "DOTween") functionality. Seamlessly support Ruby (Furigana) thanks to [RubyTextMeshPro](https://github.com/jp-netsis/RubyTextMeshPro "RubyTextMeshPro").
 
 [![](https://img.shields.io/github/release/kiraio-moe/TMP_Typewriter_With_Ruby.svg?label=latest%20version)](https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/releases)
 [![](https://img.shields.io/github/release-date/kiraio-moe/TMP_Typewriter_With_Ruby.svg)](https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/releases)
-![](https://img.shields.io/badge/Unity-2020.48f1%2B-red.svg)
-![](https://img.shields.io/badge/.NET-4.0%2B-orange.svg)
+![](https://img.shields.io/badge/Unity-2020.48f1%2B-white.svg)
+![](https://img.shields.io/badge/.NET-4.0%2B-purple.svg)
 [![](https://img.shields.io/github/license/kiraio-moe/TMP_Typewriter_With_Ruby.svg)](https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/blob/main/LICENSE)
-
 
 ## Features
 
@@ -20,26 +19,36 @@ TMP_Typewriter is a utility to create typing effect for TextMeshPro by utilizing
 
 ## How to Use
 
-- Download TMP_Typewriter_With_Ruby `.unitypackage` from [Releases](https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/releases "Releases") then import or install through Package Manager git URL:
+- Download DOTween from [DOTween official website](http://dotween.demigiant.com/download.php "DOTween official website") then import.
+- Install the modified RubyTextMeshPro via UPM Git URL:
 
-```url
-https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby.git?path=Assets/TMP_Typewriter
-```
+  ```txt
+  https://github.com/kiraio-moe/RubyTextMeshPro.git?path=Assets/RubyTextMeshPro
+  ```
 
-- Download DOTween from the [official website](http://dotween.demigiant.com/download.php "DOTween official website") and import.
-- Download modified RubyTextMeshPro from [Releases](https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/releases "Releases")
+  or `.unitypackage` from [RubyTextMeshPro Releases](https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/releases "RubyTextMeshPro Releases").
+
+- Install TMP_Typewriter_With_Ruby via UPM Git URL:
+
+  ```txt
+  https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby.git?path=Assets/TMP_Typewriter
+  ```
+
+  or the classic way with `.unitypackage` from [Releases](https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/releases "Releases").  
+  If you install using `.unitypackage`, don't forget to install TextMeshPro via Package Manager.
+
 - Add TMP_Typewriter component to the empty GameObject or that already contain TextMeshPro component.
-- Add TMP_Typewriter_With_Ruby namespace to your script and you're ready to go.
+- Add TMP_Typewriter namespace to your script and you're ready to go.
 
-```
-using KoganeUnityLib;
-```
+  ```cs
+  using KoganeUnityLib;
+  ```
 
 ### Examples Usage
 
 #### Normal
 
-![](./Promotional/TMP_Typewriter-Demo-Normal.gif)
+<img src="https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/raw/main/Promotional/TMP_Typewriter-Demo-Normal.gif" width="45%" /><br/>
 
 ```cs
 m_Typewriter.Play
@@ -52,12 +61,12 @@ m_Typewriter.Play
 
 #### Rich Text
 
-![](./Promotional/TMP_Typewriter-Demo-RichText.gif)
+<img src="https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/raw/main/Promotional/TMP_Typewriter-Demo-RichText.gif" width="45%" /><br/>
 
 ```cs
 m_Typewriter.Play
 (
-    text        : @"<size=64>ABCDEFG</size> <color=red>HIJKLMN</color> <sprite=0> <link=""https://www.google.co.jp/"">OPQRSTU</link>",
+    text        : @"<size=64>ABCDEFG</size> <color=red>HIJKLMN</color> <sprite=0> <link=""https://www.google.com/"">OPQRSTU</link>",
     speed       : m_TypingSpeed,
     onComplete  : () => Debug.Log("Typing Rich Text Complete!")
 );
@@ -65,9 +74,9 @@ m_Typewriter.Play
 
 #### Ruby
 
-![](./Promotional/TMP_Typewriter-Demo-Ruby.gif)
+![](https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/raw/main/Promotional/TMP_Typewriter-Demo-Ruby.gif)
 
-You can use <r> or <ruby> tag to wrap the Furigana.
+You can use `<r>` or `<ruby>` tag to wrap the Furigana (small word on top of a word).
 
 ```cs
 m_Typewriter.Play
@@ -80,7 +89,7 @@ m_Typewriter.Play
 
 #### Sprite
 
-![](./Promotional/TMP_Typewriter-Demo-Sprite.gif)
+<img src="https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/raw/main/Promotional/TMP_Typewriter-Demo-Sprite.gif" width="45%" /><br/>
 
 ```cs
 m_Typewriter.Play
@@ -93,7 +102,9 @@ m_Typewriter.Play
 
 #### Delay
 
-![](./Promotional/TMP_Typewriter-Demo-Delay.gif)
+![](https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/raw/main/Promotional/TMP_Typewriter-Demo-Delay.gif)
+
+The delay duration is in seconds.
 
 ```cs
 m_Typewriter.Play
@@ -106,7 +117,7 @@ m_Typewriter.Play
 
 #### Pause & Resume
 
-![](./Promotional/TMP_Typewriter-Demo-Pause_Resume.gif)
+<img src="https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/raw/main/Promotional/TMP_Typewriter-Demo-Pause_Resume.gif" width="45%" /><br/>
 
 ```cs
 m_Typewriter.Pause();
@@ -115,18 +126,16 @@ m_Typewriter.Resume();
 
 #### Skip
 
-![](./Promotional/TMP_Typewriter-Demo-Skip.gif)
+<img src="https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/raw/main/Promotional/TMP_Typewriter-Demo-Skip.gif" width="45%" /><br/>
 
 ```cs
 m_Typewriter.Skip(); // with callback (onComplete invoked)
 m_Typewriter.Skip(false); // no callback
 ```
 
-#### Other
+#### With CharTweener
 
-![](./Promotional/TMP_Typewriter-Demo-WithCharTweener.gif)
-
-Compatible with [CharTweener](https://github.com/mdechatech/CharTweener "CharTweener").
+<img src="https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/raw/main/Promotional/TMP_Typewriter-Demo-WithCharTweener.gif" width="45%" /><br/>
 
 ## License
 
@@ -134,6 +143,5 @@ This project is licensed under [MIT License](/LICENSE "Read LICENSE file").
 
 ## Credits
 
-- [ina-amagami](https://github.com/ina-amagami "ina-amagami") for the original idea.
 - [DOTWeen](http://dotween.demigiant.com "DOTween")
 - [RubyTextMeshPro](https://github.com/jp-netsis/RubyTextMeshPro "RubyTextMeshPro")

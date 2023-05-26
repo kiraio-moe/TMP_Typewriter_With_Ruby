@@ -2,7 +2,7 @@
 
 ## v1.0.2 [25/05/2023]
 
-- Add typing status.
+- Add typing status to check whether the tween is playing or not.
 
 ## v1.0.1 [24/05/2023]
 
