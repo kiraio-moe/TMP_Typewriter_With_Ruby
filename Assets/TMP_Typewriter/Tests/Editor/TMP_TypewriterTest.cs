@@ -7,7 +7,6 @@ namespace KoganeUnityLib.Tests
     public class TMP_TypewriterTest
     {
         TMP_Typewriter typewriter;
-        float waitTime;
 
         [SetUp]
         public void Setup()
@@ -28,7 +27,7 @@ namespace KoganeUnityLib.Tests
         public void Play()
         {
             typewriter.Play(
-                text: "このテキストは\n<r=かんじ>漢字</r>テキストに\nルビが<r=ふ>振</r>られます",
+                text: "Hello World!",
                 speed: 10,
                 onComplete: () => Assert.True(true)
             );
@@ -38,14 +37,10 @@ namespace KoganeUnityLib.Tests
         public void SkipWithCallback()
         {
             typewriter.Play(
-                text: "このテキストは\n<r=かんじ>漢字</r>テキストに\nルビが<r=ふ>振</r>られます",
+                text: "Hello World!",
                 speed: 10,
-                onComplete: () => Assert.True(true) // <- Callback
+                onComplete: () => Assert.True(true)
             );
-
-            // DOTween
-            //     .To(() => waitTime, x => waitTime = x, 1, 1.5f)
-            //     .OnComplete(() => typewriter.Skip(true));
 
             DOVirtual.DelayedCall(1.5f, () => typewriter.Skip(true));
         }
@@ -56,14 +51,10 @@ namespace KoganeUnityLib.Tests
             bool callbackCalled = false;
 
             typewriter.Play(
-                text: "このテキストは\n<r=かんじ>漢字</r>テキストに\nルビが<r=ふ>振</r>られます",
+                text: "Hello World!",
                 speed: 10,
                 onComplete: () => Assert.False(callbackCalled)
             );
-
-            // DOTween
-            //     .To(() => waitTime, x => waitTime = x, 1, 1.5f)
-            //     .OnComplete(() => typewriter.Skip(callbackCalled = false));
 
             DOVirtual.DelayedCall(1.5f, () => typewriter.Skip(callbackCalled = false));
         }
@@ -72,22 +63,14 @@ namespace KoganeUnityLib.Tests
         public void Pause()
         {
             typewriter.Play(
-                text: "このテキストは\n<r=かんじ>漢字</r>テキストに\nルビが<r=ふ>振</r>られます",
+                text: "Hello World!",
                 speed: 10,
                 onComplete: () => Assert.False(true)
             );
 
-            // DOTween
-            //     .To(() => waitTime, x => waitTime = x, 1, 1.5f)
-            //     .OnComplete(() =>
-            //     {
-            //         Assert.True(true);
-            //         typewriter.Pause();
-            //     });
-
             DOVirtual.DelayedCall(1.5f, () => {
-                Assert.True(true);
                 typewriter.Pause();
+                Assert.True(true);
             });
         }
 
@@ -95,27 +78,15 @@ namespace KoganeUnityLib.Tests
         public void Resume()
         {
             typewriter.Play(
-                text: "このテキストは\n<r=かんじ>漢字</r>テキストに\nルビが<r=ふ>振</r>られます",
+                text: "Hello World!",
                 speed: 10,
                 onComplete: () => Assert.True(true)
             );
 
             DOTween
                 .Sequence()
-                .Append(
-                    DOVirtual.DelayedCall(1.5f, () => typewriter.Pause())
-                )
-                // .Append(
-                //     DOTween
-                //         .To(() => waitTime, x => waitTime = x, 1, 1.5f)
-                //         .OnComplete(() => typewriter.Pause())
-                // )
+                .Append(DOVirtual.DelayedCall(1.5f, () => typewriter.Pause()))
                 .Append(DOVirtual.DelayedCall(1, () => typewriter.Resume()));
-                // .Append(
-                //     DOTween
-                //         .To(() => waitTime, x => waitTime = x, 1, 1)
-                //         .OnComplete(() => typewriter.Resume())
-                // );
         }
     }
 }

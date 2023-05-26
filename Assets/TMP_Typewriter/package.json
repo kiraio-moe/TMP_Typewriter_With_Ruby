@@ -1,13 +1,13 @@
 {
   "name": "com.baba_s.tmp_typewriter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "TMP_Typewriter",
-  "description": "TMP_Typewriter is a utility to create typing effect for TextMeshPro by utilizing DOTween funtionality. Support Ruby (Furigana) to write Kanji thanks to RubyTextMeshPro by jp-netsis.",
+  "description": "TMP_Typewriter is a utility to create typing effect for TextMeshPro by utilizing DOTween functionality. Seamlessly support Ruby (Furigana) thanks to RubyTextMeshPro.",
   "unity": "2019.1",
   "unityRelease": "0b5",
   "documentationUrl": "https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby#how-to-use",
-  "changelogUrl": "https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/CHANGELOG.md",
-  "licensesUrl": "https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/LICENSE",
+  "changelogUrl": "https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/kiraio-moe/TMP_Typewriter_With_Ruby/blob/main/LICENSE",
   "dependencies": {
     "com.unity.textmeshpro": "3.0.6"
   },
@@ -23,5 +23,13 @@
     "url": "http://baba-s.hatenablog.com/",
     "twitter": "https://twitter.com/baba_s_"
   },
-  "type": "library"
+  "type": "library",
+  "category": "Text Animation",
+  "samples": [
+    {
+      "displayName": "TMP_Typewriter Demo",
+      "description": "Demo contains TMP_Typewriter features.",
+      "path": "Samples/TMP_TypewriterExample"
+    }
+  ]
 }
